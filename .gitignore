@@ -2,6 +2,8 @@
 .env
 .env.local
 BUILD_GUIDE.md
+.omc/
+
 
 
 # Virtual Environment

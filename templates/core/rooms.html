@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load humanize %}
 
 {% block title %}Rooms &amp; Suites — Hotel Nightingale{% endblock %}
 
@@ -50,7 +51,7 @@
 
             <div class="room-card-footer">
                 <div class="room-price">
-                    <span class="price-amount">${{ room.price }}</span>
+                    <span class="price-amount">NPR {{ room.price|intcomma }}</span>
                     <span class="price-period">/ night</span>
                 </div>
                 <a href="{% url 'contact' %}?guests={{ room.capacity }}" class="btn-gold">Inquire Now</a>

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load humanize %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
@@ -24,28 +25,6 @@
             <a href="{% url 'contact' %}" class="btn-outline-light">Book Your Stay</a>
         </div>
     </div>
-
-    <!-- Quick Booking Bar -->
-    <form class="booking-bar" action="{% url 'contact' %}" method="get">
-        <div class="booking-field">
-            <label for="check_in"><i class="fa-solid fa-calendar-days"></i> Check-in</label>
-            <input type="date" id="check_in" name="check_in" required>
-        </div>
-        <div class="booking-field">
-            <label for="check_out"><i class="fa-solid fa-calendar-days"></i> Check-out</label>
-            <input type="date" id="check_out" name="check_out" required>
-        </div>
-        <div class="booking-field">
-            <label for="guests"><i class="fa-solid fa-user"></i> Guests</label>
-            <select id="guests" name="guests">
-                <option value="1">1 Guest</option>
-                <option value="2" selected>2 Guests</option>
-                <option value="3">3 Guests</option>
-                <option value="4">4 Guests</option>
-            </select>
-        </div>
-        <button type="submit" class="btn-gold booking-submit">Check Availability</button>
-    </form>
 </section>
 
 <!-- Story / Heritage -->
@@ -92,7 +71,7 @@
                     src="{{ room.image }}"
                     onerror="this.onerror=null;this.src='https://images.pexels.com/photos/271639/pexels-photo-271639.jpeg?auto=compress&cs=tinysrgb&w=1000';"
                     alt="{{ room.name }}">
-                <span class="price-tag">${{ room.price }} <small>/ night</small></span>
+                <span class="price-tag">NPR {{ room.price|intcomma }} <small>/ night</small></span>
             </div>
             <div class="suite-body">
                 <h3>{{ room.name }}</h3>
