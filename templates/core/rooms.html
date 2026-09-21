@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Rooms &amp; Suites — Hotel Nightingale{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/rooms.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="page-banner">
+    <div class="page-banner-overlay"></div>
+    <img
+        class="page-banner-bg"
+        src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=2000&q=80"
+        onerror="this.onerror=null;this.src='https://images.pexels.com/photos/271639/pexels-photo-271639.jpeg?auto=compress&cs=tinysrgb&w=2000';"
+        alt="Rooms and Suites">
+    <div class="page-banner-content">
+        <p class="eyebrow eyebrow-light">Accommodations</p>
+        <h1>Rooms &amp; Suites</h1>
+        <p class="lead-text">Each residence at Hotel Nightingale is designed for uninterrupted comfort and quiet grandeur.</p>
+    </div>
+</section>
+
+<section class="rooms-listing">
+    {% for room in rooms %}
+    <div class="room-card {% cycle '' 'room-card-reverse' %}">
+        <div class="room-card-image">
+            <img
+                src="{{ room.image }}"
+                onerror="this.onerror=null;this.src='https://images.pexels.com/photos/271639/pexels-photo-271639.jpeg?auto=compress&cs=tinysrgb&w=1200';"
+                alt="{{ room.name }}">
+        </div>
+        <div class="room-card-body">
+            <p class="eyebrow">{{ room.tagline }}</p>
+            <h2>{{ room.name }}</h2>
+
+            <div class="room-specs">
+                <span><i class="fa-solid fa-user-group"></i> {{ room.capacity }} Guests</span>
+                <span><i class="fa-solid fa-ruler-combined"></i> {{ room.size_sqm }} m&sup2;</span>
+                <span><i class="fa-solid fa-bed"></i> {{ room.bed }}</span>
+            </div>
+
+            <ul class="amenities-checklist">
+                {% for feature in room.features %}
+                <li><i class="fa-solid fa-check"></i> {{ feature }}</li>
+                {% endfor %}
+            </ul>
+
+            <div class="room-card-footer">
+                <div class="room-price">
+                    <span class="price-amount">${{ room.price }}</span>
+                    <span class="price-period">/ night</span>
+                </div>
+                <a href="{% url 'contact' %}?guests={{ room.capacity }}" class="btn-gold">Inquire Now</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+{% endblock %}

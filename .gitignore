@@ -1,0 +1,23 @@
+# Environment variables & secrets
+.env
+.env.local
+BUILD_GUIDE.md
+
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+
+# Python cache & bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Database
+db.sqlite3
+db.sqlite3-journal
+
+# Static collected & media uploads
+staticfiles/
+media/

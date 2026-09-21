@@ -1,0 +1,189 @@
+/* ==========================================================================
+   Hotel Nightingale — Contact Page Stylesheet
+   Split-panel layout, dark info card, white form card
+   ========================================================================== */
+
+.contact-section {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 6rem 1.5rem;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+/* Info Panel */
+.contact-info-panel {
+    background-color: var(--color-navy);
+    color: rgba(255, 255, 255, 0.85);
+    padding: 3.5rem 3rem;
+}
+
+.contact-info-panel h2 {
+    color: var(--color-white);
+    margin-bottom: 1rem;
+}
+
+.contact-info-panel .lead-text {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 2.5rem;
+}
+
+.info-item {
+    display: flex;
+    gap: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.info-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(197, 168, 128, 0.15);
+    color: var(--color-gold);
+    border-radius: 50%;
+    font-size: 1rem;
+}
+
+.info-item h4 {
+    color: var(--color-white);
+    margin-bottom: 0.35rem;
+    font-size: 1rem;
+}
+
+.info-item p {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 0.15rem;
+}
+
+.info-socials {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+}
+
+.info-socials a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: var(--color-white);
+    transition: var(--transition);
+}
+
+.info-socials a:hover {
+    background-color: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-navy);
+}
+
+/* Form Panel */
+.contact-form-panel {
+    background-color: var(--color-white);
+    padding: 3.5rem 3rem;
+}
+
+.contact-form-panel h2 {
+    margin-bottom: 2rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+.form-row-three {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    font-size: 0.92rem;
+    color: var(--color-text-primary);
+    background-color: var(--color-alabaster);
+    transition: var(--transition);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.2);
+    background-color: var(--color-white);
+}
+
+.form-error {
+    font-size: 0.8rem;
+    color: var(--color-error);
+}
+
+.honeypot-field {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.form-submit {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .contact-info-panel,
+    .contact-form-panel {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .form-row,
+    .form-row-three {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}

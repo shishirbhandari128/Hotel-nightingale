@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <img
+        class="hero-bg"
+        src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2000&q=80"
+        onerror="this.onerror=null;this.src='https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=2000';"
+        alt="Hotel Nightingale grand facade">
+    <div class="hero-content">
+        <p class="eyebrow eyebrow-light">Welcome to Hotel Nightingale</p>
+        <h1>Quiet Luxury, <em>Timeless</em> Stays</h1>
+        <p class="lead-text hero-lead">A five-star boutique retreat where every detail is composed for serenity, and every stay becomes a memory.</p>
+        <div class="hero-actions">
+            <a href="{% url 'rooms' %}" class="btn-gold">Explore Suites</a>
+            <a href="{% url 'contact' %}" class="btn-outline-light">Book Your Stay</a>
+        </div>
+    </div>
+
+    <!-- Quick Booking Bar -->
+    <form class="booking-bar" action="{% url 'contact' %}" method="get">
+        <div class="booking-field">
+            <label for="check_in"><i class="fa-solid fa-calendar-days"></i> Check-in</label>
+            <input type="date" id="check_in" name="check_in" required>
+        </div>
+        <div class="booking-field">
+            <label for="check_out"><i class="fa-solid fa-calendar-days"></i> Check-out</label>
+            <input type="date" id="check_out" name="check_out" required>
+        </div>
+        <div class="booking-field">
+            <label for="guests"><i class="fa-solid fa-user"></i> Guests</label>
+            <select id="guests" name="guests">
+                <option value="1">1 Guest</option>
+                <option value="2" selected>2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+            </select>
+        </div>
+        <button type="submit" class="btn-gold booking-submit">Check Availability</button>
+    </form>
+</section>
+
+<!-- Story / Heritage -->
+<section class="story-section">
+    <div class="story-grid">
+        <div class="story-image">
+            <img
+                src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1000&q=80"
+                onerror="this.onerror=null;this.src='https://images.pexels.com/photos/271643/pexels-photo-271643.jpeg?auto=compress&cs=tinysrgb&w=1000';"
+                alt="Hotel Nightingale grand lobby">
+            <div class="heritage-badge">
+                <span class="heritage-year">Est. 1928</span>
+                <span class="heritage-label">A Century of Hospitality</span>
+            </div>
+        </div>
+        <div class="story-content">
+            <p class="eyebrow">Our Heritage</p>
+            <h2>A Legacy Built on <em>Grace</em></h2>
+            <p class="lead-text">Since 1928, Hotel Nightingale has stood as a sanctuary of refined hospitality, welcoming travelers seeking serenity, elegance, and an unhurried sense of arrival.</p>
+            <ul class="story-highlights">
+                <li><i class="fa-solid fa-crown"></i> Award-winning boutique architecture</li>
+                <li><i class="fa-solid fa-leaf"></i> Curated wellness &amp; spa sanctuary</li>
+                <li><i class="fa-solid fa-utensils"></i> Signature fine-dining experiences</li>
+                <li><i class="fa-solid fa-hands-holding-circle"></i> Personalized concierge service</li>
+            </ul>
+            <a href="{% url 'rooms' %}" class="btn-outline-dark">Discover Our Suites</a>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Suites -->
+<section class="featured-suites">
+    <div class="section-heading">
+        <p class="eyebrow">Accommodations</p>
+        <h2>Featured Suites</h2>
+        <p class="lead-text">Each residence is composed with the same devotion to comfort, craft, and calm.</p>
+    </div>
+
+    <div class="suites-grid">
+        {% for room in featured_rooms %}
+        <div class="suite-card">
+            <div class="suite-image">
+                <img
+                    src="{{ room.image }}"
+                    onerror="this.onerror=null;this.src='https://images.pexels.com/photos/271639/pexels-photo-271639.jpeg?auto=compress&cs=tinysrgb&w=1000';"
+                    alt="{{ room.name }}">
+                <span class="price-tag">${{ room.price }} <small>/ night</small></span>
+            </div>
+            <div class="suite-body">
+                <h3>{{ room.name }}</h3>
+                <p class="suite-tagline">{{ room.tagline }}</p>
+                <div class="suite-meta">
+                    <span><i class="fa-solid fa-user-group"></i> {{ room.capacity }} Guests</span>
+                    <span><i class="fa-solid fa-ruler-combined"></i> {{ room.size_sqm }} m&sup2;</span>
+                </div>
+                <div class="suite-tags">
+                    {% for feature in room.features|slice:":2" %}
+                    <span class="amenity-tag">{{ feature }}</span>
+                    {% endfor %}
+                </div>
+                <a href="{% url 'rooms' %}" class="btn-outline-dark suite-cta">View Details</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Teaser Gallery -->
+<section class="teaser-gallery">
+    <div class="section-heading">
+        <p class="eyebrow eyebrow-light">Visual Journey</p>
+        <h2>Moments Within Nightingale</h2>
+    </div>
+    <div class="teaser-grid">
+        {% for item in preview_gallery %}
+        <div class="teaser-item">
+            <img
+                src="{{ item.image }}"
+                onerror="this.onerror=null;this.src='https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=800';"
+                alt="{{ item.title }}">
+        </div>
+        {% endfor %}
+    </div>
+    <div class="teaser-cta">
+        <a href="{% url 'gallery' %}" class="btn-gold">View Full Gallery</a>
+    </div>
+</section>
+
+{% endblock %}

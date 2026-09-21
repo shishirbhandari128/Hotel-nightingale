@@ -1,0 +1,146 @@
+/* ==========================================================================
+   Hotel Nightingale — Rooms Page Stylesheet
+   Detailed accommodation cards, amenities checklist
+   ========================================================================== */
+
+/* Rooms Listing */
+.rooms-listing {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 6rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+}
+
+.room-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+}
+
+.room-card-reverse .room-card-image {
+    order: 2;
+}
+
+.room-card-reverse .room-card-body {
+    order: 1;
+}
+
+.room-card-image img {
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: var(--shadow-md);
+}
+
+.room-card-body h2 {
+    margin-bottom: 1.25rem;
+}
+
+.room-specs {
+    display: flex;
+    gap: 1.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.room-specs span {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+.room-specs i {
+    color: var(--color-gold);
+    margin-right: 0.4rem;
+}
+
+.amenities-checklist {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+    margin-bottom: 2rem;
+}
+
+.amenities-checklist li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.92rem;
+    color: var(--color-text-primary);
+}
+
+.amenities-checklist li i {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-alabaster-dark);
+    color: var(--color-gold);
+    border-radius: 50%;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+
+.room-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-top: 0.5rem;
+}
+
+.room-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+}
+
+.price-amount {
+    font-family: var(--font-heading);
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+}
+
+.price-period {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .room-card {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .room-card-reverse .room-card-image,
+    .room-card-reverse .room-card-body {
+        order: initial;
+    }
+
+    .room-card-image img {
+        height: 320px;
+    }
+
+    .amenities-checklist {
+        grid-template-columns: 1fr;
+    }
+
+    .room-card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .room-card-footer .btn-gold {
+        width: 100%;
+        text-align: center;
+    }
+}
